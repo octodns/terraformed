@@ -67,6 +67,40 @@ resource "github_repository" "repo" {
   }
 }
 
+resource "github_branch_protection" "octodns" {
+  repository_id = github_repository.octodns.node_id
+
+  allows_deletions                = false
+  allows_force_pushes             = false
+  enforce_admins                  = true
+  pattern                         = "master"
+  require_conversation_resolution = false
+  require_signed_commits          = false
+  required_linear_history         = false
+
+  push_restrictions               = []
+
+  required_pull_request_reviews {
+    dismiss_stale_reviews           = false
+    dismissal_restrictions          = []
+    require_code_owner_reviews      = false
+    # can't set this to 0 until https://github.com/integrations/terraform-provider-github/pull/971
+    # is released. when that's the case the lifecycle ignore below can go away
+    # as well
+    #required_approving_review_count = 0
+    restrict_dismissals             = false
+  }
+
+  required_status_checks {
+    contexts = []
+    strict   = true
+  }
+
+  lifecycle {
+    ignore_changes = [required_pull_request_reviews[0].required_approving_review_count]
+  }
+}
+
 resource "github_branch_protection" "repo" {
   for_each = var.repos
 
