@@ -108,7 +108,7 @@ resource "github_branch_protection" "repo" {
 
   allows_deletions                = false
   allows_force_pushes             = false
-  enforce_admins                  = false
+  enforce_admins                  = true
   pattern                         = "main"
   require_conversation_resolution = false
   require_signed_commits          = false
