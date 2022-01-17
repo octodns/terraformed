@@ -9,7 +9,7 @@ variable "repos" {
     "octodns-digitalocean" = "DigitalOcean DNS provider for octoDNS",
     "octodns-dnsimple" = "Dnsimple API provider for octoDNS",
     "octodns-dnsmadeeasy" = "DnsMadeEasy DNS provider for octoDNS",
-    "octodns-docker" = "",
+    "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
     "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
     "octodns-easydns" = "easyDNS API v3 provider for octoDNS",
     "octodns-edgedns" = "Akamai Edge DNS provider for octoDNS",
@@ -20,9 +20,14 @@ variable "repos" {
     "octodns-hetzner" = "Hetzner DNS provider for octoDNS",
     "octodns-mythicbeasts" = "Mythic Beasts DNS provider for octoDNS",
     "octodns-ns1" = "Ns1Provider provider for octoDNS",
+    "octodns-ovh" = "OVHcloud DNS v6 API provider for octoDNS",
     "octodns-powerdns" = "PowerDNS API provider for octoDNS",
+    "octodns-rackspace" = "Rackspace DNS v1 API provider for octoDNS",
     "octodns-route53" = "AWS Route53 provider for octoDNS",
+    "octodns-selectel" = "Selectel DNS provider for octoDNS",
     "octodns-template" = "Skeletal new module template and helper script",
+    "octodns-transip" = "Transip DNS provider for octoDNS",
+    "octodns-ultra" = "Ultra DNS provider for octoDNS",
     "terraformed" = "Terraform based management of the octoDNS GitHub Org",
   }
 }
