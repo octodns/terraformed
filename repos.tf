@@ -9,7 +9,7 @@ variable "repos" {
     "octodns-digitalocean" = "DigitalOcean DNS provider for octoDNS",
     "octodns-dnsimple" = "Dnsimple API provider for octoDNS",
     "octodns-dnsmadeeasy" = "DnsMadeEasy DNS provider for octoDNS",
-    "octodns-docker" = "",
+    "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
     "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
     "octodns-easydns" = "easyDNS API v3 provider for octoDNS",
     "octodns-edgedns" = "Akamai Edge DNS provider for octoDNS",
