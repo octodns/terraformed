@@ -32,15 +32,6 @@ variable "repos" {
   }
 }
 
-variable "required_contexts" {
-  type = map(list(string))
-  default = {
-    "octodns-dyn" = ["ci (3.7)", "ci (3.8)", "ci (3.9)"],
-    "octodns-ovh" = ["ci (3.7)", "ci (3.8)", "ci (3.9)"],
-    "terraformed" = [],
-  }
-}
-
 resource "github_repository" "octodns" {
   name        = "octodns"
   description = "Tools for managing DNS across multiple providers"
@@ -162,12 +153,7 @@ resource "github_branch_protection" "repo" {
   }
 
   required_status_checks {
-    contexts = lookup(var.required_contexts, each.key, [
-      "ci (3.7)",
-      "ci (3.8)",
-      "ci (3.9)",
-      "ci (3.10)",
-    ])
+    contexts = lookup(var.required_contexts, each.key, [])
     strict   = true
   }
 }
