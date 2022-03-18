@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ -z "$VENV_NAME" ]; then
+    VENV_NAME="env"
+fi
+
+. "$VENV_NAME/bin/activate"
+
+./script/generate-required-contexts.py "$@"
