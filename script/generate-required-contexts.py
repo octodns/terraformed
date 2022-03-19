@@ -30,9 +30,13 @@ lines = [
 ]
 
 def get_jobs(data):
-    matrix = data['jobs']['ci']['strategy']['matrix']
+    jobs = data['jobs']
+    matrix = jobs['ci']['strategy']['matrix']
     key = list(matrix.keys())[0]
-    return [f'ci ({v})' for v in matrix[key]]
+    others = []
+    if 'setup-py' in jobs:
+        others.append('setup-py')
+    return [f'ci ({v})' for v in matrix[key]] + others
 
 for repo in repos:
     print(f'loading {repo}')
