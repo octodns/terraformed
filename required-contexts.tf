@@ -4,7 +4,7 @@
 variable "required_contexts" {
   type = map(list(string))
   default = {
-    "octodns" = ["ci (3.7)", "ci (3.8)", "ci (3.9)", "ci (3.10)", "ci (octodns/octodns-azure)", "ci (octodns/octodns-cloudflare)", "ci (octodns/octodns-constellix)", "ci (octodns/octodns-ddns)", "ci (octodns/octodns-digitalocean)", "ci (octodns/octodns-dnsimple)", "ci (octodns/octodns-dnsmadeeasy)", "ci (octodns/octodns-dyn)", "ci (octodns/octodns-easydns)", "ci (octodns/octodns-edgedns)", "ci (octodns/octodns-etchosts)", "ci (octodns/octodns-gandi)", "ci (octodns/octodns-gcore)", "ci (octodns/octodns-googlecloud)", "ci (octodns/octodns-hetzner)", "ci (octodns/octodns-mythicbeasts)", "ci (octodns/octodns-ns1)", "ci (octodns/octodns-ovh)", "ci (octodns/octodns-powerdns)", "ci (octodns/octodns-rackspace)", "ci (octodns/octodns-route53)", "ci (octodns/octodns-selectel)", "ci (octodns/octodns-transip)", "ci (octodns/octodns-ultra)"],
+    "octodns" = ["ci (3.7)", "ci (3.8)", "ci (3.9)", "ci (3.10)"],
     "octodns-azure" = ["ci (3.7)", "ci (3.8)", "ci (3.9)", "ci (3.10)", "setup-py"],
     "octodns-cloudflare" = ["ci (3.7)", "ci (3.8)", "ci (3.9)", "ci (3.10)", "setup-py"],
     "octodns-constellix" = ["ci (3.7)", "ci (3.8)", "ci (3.9)", "ci (3.10)", "setup-py"],

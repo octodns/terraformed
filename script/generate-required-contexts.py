@@ -53,13 +53,6 @@ for repo in repos:
     data = safe_load(fh.read())
     jobs = get_jobs(data)
 
-    if repo == 'octodns':
-        url = f'https://github.com/octodns/{repo}/raw/{branch}/' \
-            '.github/workflows/modules.yml'
-        fh = request.urlopen(url)
-        data = safe_load(fh.read())
-        jobs.extend(get_jobs(data))
-
     jobs = '", "'.join(jobs)
     lines.append(f'    "{repo}" = ["{jobs}"],')
 
