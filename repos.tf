@@ -93,38 +93,7 @@ resource "github_branch_protection" "octodns" {
   }
 
   required_status_checks {
-    contexts = [
-        "ci (3.7)",
-        "ci (3.8)",
-        "ci (3.9)",
-        "ci (3.10)",
-        "ci (octodns/octodns-azure)",
-        "ci (octodns/octodns-cloudflare)",
-        "ci (octodns/octodns-constellix)",
-        "ci (octodns/octodns-ddns)",
-        "ci (octodns/octodns-digitalocean)",
-        "ci (octodns/octodns-dnsimple)",
-        "ci (octodns/octodns-dnsmadeeasy)",
-        "ci (octodns/octodns-docker)",
-        "ci (octodns/octodns-dyn)",
-        "ci (octodns/octodns-easydns)",
-        "ci (octodns/octodns-edgedns)",
-        "ci (octodns/octodns-etchosts)",
-        "ci (octodns/octodns-gandi)",
-        "ci (octodns/octodns-gcore)",
-        "ci (octodns/octodns-googlecloud)",
-        "ci (octodns/octodns-hetzner)",
-        "ci (octodns/octodns-mythicbeasts)",
-        "ci (octodns/octodns-ns1)",
-        "ci (octodns/octodns-ovh)",
-        "ci (octodns/octodns-powerdns)",
-        "ci (octodns/octodns-rackspace)",
-        "ci (octodns/octodns-route53)",
-        "ci (octodns/octodns-selectel)",
-        "ci (octodns/octodns-template)",
-        "ci (octodns/octodns-transip)",
-        "ci (octodns/octodns-ultra)",
-    ]
+    contexts = lookup(var.required_contexts, "octodns", [])
     strict   = true
   }
 }
