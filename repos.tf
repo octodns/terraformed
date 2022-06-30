@@ -2,6 +2,7 @@
 variable "repos" {
   type = map(string)
   default = {
+    ".github" = "Org-level configuration & defaults",
     "octodns-azure" = "Azure DNS provider for octoDNS",
     "octodns-cloudflare" = "Cloudflare DNS provider for octoDNS",
     "octodns-constellix" = "Constellix DNS provider for octoDNS",
@@ -49,6 +50,11 @@ resource "github_repository" "octodns" {
     "infrastructure-as-code",
     "workflow",
   ]
+
+  lifecycle {
+    # branches change via pushes
+    ignore_changes = [branches]
+  }
 }
 
 resource "github_repository" "repo" {
@@ -66,8 +72,9 @@ resource "github_repository" "repo" {
   vulnerability_alerts   = true
 
   lifecycle {
-    # don't want to bother with managing topics atm
-    ignore_changes = [topics]
+    # don't want to bother with managing topics atm, and branches change via
+    # pushes
+    ignore_changes = [branches, topics]
   }
 }
 
