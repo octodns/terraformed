@@ -50,6 +50,11 @@ resource "github_repository" "octodns" {
     "infrastructure-as-code",
     "workflow",
   ]
+
+  lifecycle {
+    # branches change via pushes
+    ignore_changes = [branches]
+  }
 }
 
 resource "github_repository" "repo" {
@@ -67,8 +72,9 @@ resource "github_repository" "repo" {
   vulnerability_alerts   = true
 
   lifecycle {
-    # don't want to bother with managing topics atm
-    ignore_changes = [topics]
+    # don't want to bother with managing topics atm, and branches change via
+    # pushes
+    ignore_changes = [branches, topics]
   }
 }
 
