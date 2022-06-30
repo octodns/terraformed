@@ -2,6 +2,7 @@
 variable "repos" {
   type = map(string)
   default = {
+    ".github" = "Org-level configuration & defaults",
     "octodns-azure" = "Azure DNS provider for octoDNS",
     "octodns-cloudflare" = "Cloudflare DNS provider for octoDNS",
     "octodns-constellix" = "Constellix DNS provider for octoDNS",
