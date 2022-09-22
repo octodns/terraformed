@@ -78,13 +78,14 @@ resource "github_repository" "repo" {
   }
 }
 
+# TODO: look at refactoring this into the std repo now that it's main
 resource "github_branch_protection" "octodns" {
   repository_id = github_repository.octodns.node_id
 
   allows_deletions                = false
   allows_force_pushes             = false
   enforce_admins                  = true
-  pattern                         = "master"
+  pattern                         = "main"
   require_conversation_resolution = false
   require_signed_commits          = false
   required_linear_history         = false
