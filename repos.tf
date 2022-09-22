@@ -102,7 +102,7 @@ resource "github_branch_protection" "octodns" {
 }
 
 resource "github_repository_tag_protection" "octodns" {
-  repository = "github_repository.octodns.name"
+  repository = github_repository.octodns.name
   pattern    = "v*"
 }
 
