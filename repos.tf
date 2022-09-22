@@ -6,6 +6,7 @@ variable "repos" {
     "octodns-azure" = "Azure DNS provider for octoDNS",
     "octodns-cloudflare" = "Cloudflare DNS provider for octoDNS",
     "octodns-constellix" = "Constellix DNS provider for octoDNS",
+    "octodns-bind" = "RFC compliant (Bind9) provider for octoDNS",
     "octodns-ddns" = "A simple Dynamic DNS source for octoDNS.",
     "octodns-digitalocean" = "DigitalOcean DNS provider for octoDNS",
     "octodns-dnsimple" = "Dnsimple API provider for octoDNS",
