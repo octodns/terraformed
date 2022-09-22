@@ -50,11 +50,6 @@ resource "github_repository" "octodns" {
     "infrastructure-as-code",
     "workflow",
   ]
-
-  lifecycle {
-    # branches change via pushes
-    ignore_changes = [branches]
-  }
 }
 
 resource "github_repository" "repo" {
@@ -72,9 +67,8 @@ resource "github_repository" "repo" {
   vulnerability_alerts   = true
 
   lifecycle {
-    # don't want to bother with managing topics atm, and branches change via
-    # pushes
-    ignore_changes = [branches, topics]
+    # don't want to bother with managing topics atm
+    ignore_changes = [topics]
   }
 }
 
@@ -106,6 +100,11 @@ resource "github_branch_protection" "octodns" {
   }
 }
 
+resource "github_repository_tag_protection" "octodns" {
+  repository = "github_repository.octodns.name"
+  pattern    = "v*"
+}
+
 resource "github_branch_protection" "repo" {
   for_each = var.repos
 
@@ -133,4 +132,11 @@ resource "github_branch_protection" "repo" {
     contexts = lookup(var.required_contexts, each.key, [])
     strict   = true
   }
+}
+
+resource "github_repository_tag_protection" "repo" {
+  for_each = var.repos
+
+  repository = github_repository.repo[each.key].name
+  pattern    = "v*"
 }
