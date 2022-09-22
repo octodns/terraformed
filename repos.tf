@@ -100,6 +100,11 @@ resource "github_branch_protection" "octodns" {
   }
 }
 
+resource "github_repository_tag_protection" "octodns" {
+  repository = "github_repository.octodns.name"
+  pattern    = "v*"
+}
+
 resource "github_branch_protection" "repo" {
   for_each = var.repos
 
@@ -127,4 +132,11 @@ resource "github_branch_protection" "repo" {
     contexts = lookup(var.required_contexts, each.key, [])
     strict   = true
   }
+}
+
+resource "github_repository_tag_protection" "repo" {
+  for_each = var.repos
+
+  repository = github_repository.repo[each.key].name
+  pattern    = "v*"
 }
