@@ -13,6 +13,7 @@ variable "repos" {
     "octodns-dnsmadeeasy" = "DnsMadeEasy DNS provider for octoDNS",
     "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
     "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
+    "octodns-edgecenter" = "EdgeCenter provider for octoDNS",
     "octodns-easydns" = "easyDNS API v3 provider for octoDNS",
     "octodns-edgedns" = "Akamai Edge DNS provider for octoDNS",
     "octodns-etchosts" = "/etc/hosts provider for octoDNS",
