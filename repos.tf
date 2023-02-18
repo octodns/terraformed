@@ -17,6 +17,7 @@ variable "repos" {
     "octodns-easydns" = "easyDNS API v3 provider for octoDNS",
     "octodns-edgedns" = "Akamai Edge DNS provider for octoDNS",
     "octodns-etchosts" = "/etc/hosts provider for octoDNS",
+    "octodns-fastly" = "Fastly DNS provider for octoDNS",
     "octodns-gandi" = "Gandi v5 API provider for octoDNS",
     "octodns-gcore" = "G-Core Labs DNS v2 API provider for octoDNS",
     "octodns-googlecloud" = "Google Cloud DNS provider for octoDNS",
