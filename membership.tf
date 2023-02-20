@@ -3,8 +3,7 @@
 resource "github_membership" "admins" {
   for_each = toset([
     "ross",
-    "theojulienne",
-    "yeled",
+    "yzguy",
   ])
 
   username = each.key
@@ -15,7 +14,6 @@ resource "github_membership" "admins" {
 
 resource "github_membership" "members" {
   for_each = toset([
-    "awlx",
     "parkr",
     "viranch",
     "yzguy",
