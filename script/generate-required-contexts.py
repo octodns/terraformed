@@ -5,6 +5,11 @@ from sys import argv
 from urllib import request
 from urllib.error import HTTPError
 
+try:
+    branch = argv[1]
+except IndexError:
+    branch = 'main'
+
 with open('repos.tf') as fh:
     lines = fh.read().split('\n')
 
@@ -40,7 +45,6 @@ def get_jobs(data):
 
 for repo in repos:
     print(f'loading {repo}')
-    branch = 'master' if repo == 'octodns' else 'main'
     url = f'https://github.com/octodns/{repo}/raw/{branch}/' \
         '.github/workflows/main.yml'
     try:
