@@ -29,6 +29,7 @@ variable "repos" {
     "octodns-rackspace" = "Rackspace DNS v1 API provider for octoDNS",
     "octodns-route53" = "AWS Route53 provider for octoDNS",
     "octodns-selectel" = "Selectel DNS provider for octoDNS",
+    "octodns-spf" = "SPF Management Utilities/Source for octoDNS",
     "octodns-template" = "Skeletal new module template and helper script",
     "octodns-transip" = "Transip DNS provider for octoDNS",
     "octodns-ultra" = "Ultra DNS provider for octoDNS",
