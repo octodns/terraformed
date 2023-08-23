@@ -16,7 +16,6 @@ resource "github_membership" "members" {
   for_each = toset([
     "parkr",
     "viranch",
-    "yzguy",
   ])
 
   username = each.key
