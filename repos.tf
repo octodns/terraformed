@@ -37,6 +37,13 @@ variable "repos" {
   }
 }
 
+variable "archived" {
+  type = set(string)
+  default = [
+    "octodns-dyn"
+  ]
+}
+
 resource "github_repository" "octodns" {
   name        = "octodns"
   description = "Tools for managing DNS across multiple providers"
@@ -68,7 +75,9 @@ resource "github_repository" "repo" {
   has_projects           = false
   has_wiki               = false
   visibility             = "public"
-  vulnerability_alerts   = true
+  vulnerability_alerts   = !contains(var.archived, each.key)
+
+  archived               = contains(var.archived, each.key)
 
   lifecycle {
     # don't want to bother with managing topics atm

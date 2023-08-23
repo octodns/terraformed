@@ -7,6 +7,7 @@ resource "github_team" "review" {
 resource "github_team_membership" "review-maintainer" {
   for_each = toset([
     "ross",
+    "yzguy",
   ])
 
   team_id  = github_team.review.id
@@ -17,7 +18,6 @@ resource "github_team_membership" "review-maintainer" {
 resource "github_team_membership" "review-member" {
   for_each = toset([
     "viranch",
-    "yzguy",
   ])
 
   team_id  = github_team.review.id
