@@ -7,25 +7,19 @@ set -e
 cd "$(dirname "$0")"/..
 ROOT=$(pwd)
 
-if [ -z "$VENV_NAME" ]; then
-    VENV_NAME="env"
+echo "This repo assumes you have tfenv installed, if not 'brew install tfenv' should get it going assumning you use Homebrew"
+
+tfenv install `cat .terraform-version`
+terraform init
+
+if [ ! -e .env ]; then
+  cat <<EOF
+It is suggested that you create a .env file and define the following in it
+
+# this access token will need full repo and org scope for the octodns org
+export GITHUB_TOKEN="<access-token>"
+export GITHUB_OWNER="octodns"
+
+and then source .env before running terraform.
+EOF
 fi
-
-if [ ! -d "$VENV_NAME" ]; then
-    if [ -z "$VENV_PYTHON" ]; then
-        VENV_PYTHON=$(command -v python3)
-    fi
-    "$VENV_PYTHON" -m venv "$VENV_NAME"
-fi
-. "$VENV_NAME/bin/activate"
-
-# We're in the venv now, so use the first Python in $PATH. In particular, don't
-# use $VENV_PYTHON - that's the Python that *created* the venv, not the python
-# *inside* the venv
-python -m pip install -U 'pip>=10.0.1'
-python -m pip install -r requirements.txt
-
-echo ""
-echo "Run source env/bin/activate to get your shell in to the virtualenv"
-echo "See README.md for more information."
-echo ""
