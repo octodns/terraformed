@@ -1,8 +1,7 @@
-
 variable "repos" {
   type = map(string)
   default = {
-    ".github" = "Org-level configuration & defaults",
+    # providers
     "octodns-azure" = "Azure DNS provider for octoDNS",
     "octodns-bind" = "RFC compliant (Bind9) provider for octoDNS",
     "octodns-cloudflare" = "Cloudflare DNS provider for octoDNS",
@@ -11,8 +10,6 @@ variable "repos" {
     "octodns-digitalocean" = "DigitalOcean DNS provider for octoDNS",
     "octodns-dnsimple" = "Dnsimple API provider for octoDNS",
     "octodns-dnsmadeeasy" = "DnsMadeEasy DNS provider for octoDNS",
-    "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
-    "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
     "octodns-edgecenter" = "EdgeCenter provider for octoDNS",
     "octodns-easydns" = "easyDNS API v3 provider for octoDNS",
     "octodns-edgedns" = "Akamai Edge DNS provider for octoDNS",
@@ -33,14 +30,64 @@ variable "repos" {
     "octodns-template" = "Skeletal new module template and helper script",
     "octodns-transip" = "Transip DNS provider for octoDNS",
     "octodns-ultra" = "Ultra DNS provider for octoDNS",
+
+    # archived
+    "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
+
+    # other
+    ".github" = "Org-level configuration & defaults",
+    "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
     "terraformed" = "Terraform based management of the octoDNS GitHub Org",
   }
 }
 
-variable "archived" {
+variable "repos_providers" {
   type = set(string)
   default = [
-    "octodns-dyn"
+    "octodns-azure",
+    "octodns-bind",
+    "octodns-cloudflare",
+    "octodns-constellix",
+    "octodns-ddns",
+    "octodns-digitalocean",
+    "octodns-dnsimple",
+    "octodns-dnsmadeeasy",
+    "octodns-edgecenter",
+    "octodns-easydns",
+    "octodns-edgedns",
+    "octodns-etchosts",
+    "octodns-fastly",
+    "octodns-gandi",
+    "octodns-gcore",
+    "octodns-googlecloud",
+    "octodns-hetzner",
+    "octodns-mythicbeasts",
+    "octodns-ns1",
+    "octodns-ovh",
+    "octodns-powerdns",
+    "octodns-rackspace",
+    "octodns-route53",
+    "octodns-selectel",
+    "octodns-spf",
+    "octodns-template",
+    "octodns-transip",
+    "octodns-ultra",
+  ]
+}
+
+variable "repos_archived" {
+  type = set(string)
+  default = [
+    "octodns-dyn",
+  ]
+}
+
+variable "repos_other" {
+  type = set(string)
+  default = [
+    ".github",
+    "octodns-docker",
+    "terraformed",
   ]
 }
 
@@ -75,9 +122,9 @@ resource "github_repository" "repo" {
   has_projects           = false
   has_wiki               = false
   visibility             = "public"
-  vulnerability_alerts   = !contains(var.archived, each.key)
+  vulnerability_alerts   = !contains(var.repos_archived, each.key)
 
-  archived               = contains(var.archived, each.key)
+  archived               = contains(var.repos_archived, each.key)
 
   lifecycle {
     # don't want to bother with managing topics atm
@@ -108,7 +155,7 @@ resource "github_branch_protection" "octodns" {
   }
 
   required_status_checks {
-    contexts = lookup(var.required_contexts, "octodns", [])
+    contexts = concat("${null_resource.required_contexts.*.triggers.job}", ["setup-py"])
     strict   = true
   }
 }
@@ -142,7 +189,7 @@ resource "github_branch_protection" "repo" {
   }
 
   required_status_checks {
-    contexts = lookup(var.required_contexts, each.key, [])
+    contexts = contains(var.repos_providers, each.key) ? concat("${null_resource.required_contexts.*.triggers.job}", ["setup-py"]) : []
     strict   = true
   }
 }
