@@ -1,16 +1,22 @@
-variable "python_versions_active" {
-  type    = list(string)
-  default = ["3.8", "3.9", "3.10", "3.11"]
+data "http" "ci_config" {
+  url = "https://github.com/octodns/octodns/raw/main/.ci-config.json"
 }
+
+locals {
+  ci_config = jsondecode(data.http.ci_config.body)
+  python_versions_active = local.ci_config.python_versions_active
+  python_version_current = local.ci_config.python_version_current
+}
+
 variable "python_version_current" {
   type    = string
   default = "3.11"
 }
 
 resource "null_resource" "required_contexts" {
-  count = "${length(var.python_versions_active)}"
+  count = "${length(local.python_versions_active)}"
 
   triggers = {
-    job = "ci (${element(var.python_versions_active, count.index)})"
+    job = "ci (${element(local.python_versions_active, count.index)})"
   }
 }
