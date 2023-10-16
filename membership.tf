@@ -14,6 +14,7 @@ resource "github_membership" "admins" {
 
 resource "github_membership" "members" {
   for_each = toset([
+    "istr",
     "parkr",
     "viranch",
   ])
