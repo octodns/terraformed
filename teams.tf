@@ -17,6 +17,7 @@ resource "github_team_membership" "review-maintainer" {
 
 resource "github_team_membership" "review-member" {
   for_each = toset([
+    "istr",
     "viranch",
   ])
 
