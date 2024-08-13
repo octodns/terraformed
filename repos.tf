@@ -32,9 +32,6 @@ variable "repos" {
     "octodns-transip" = "Transip DNS provider for octoDNS",
     "octodns-ultra" = "Ultra DNS provider for octoDNS",
 
-    # archived
-    "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
-
     # other
     ".github" = "Org-level configuration & defaults",
     "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
@@ -160,9 +157,37 @@ resource "github_branch_protection" "octodns" {
   }
 }
 
-resource "github_repository_tag_protection" "octodns" {
+resource "github_repository_ruleset" "octodns" {
   repository = github_repository.octodns.name
-  pattern    = "v*"
+
+  name        = "version-tags"
+  target      = "tag"
+  enforcement = "active"
+
+  bypass_actors {
+    actor_id    = 1
+    actor_type  = "OrganizationAdmin"
+    bypass_mode = "always"
+  }
+
+  bypass_actors {
+    actor_id    = 5
+    actor_type  = "RepositoryRole"
+    bypass_mode = "always"
+  }
+
+  conditions {
+    ref_name {
+      include = ["refs/tags/v*"]
+      exclude = []
+    }
+  }
+
+  rules {
+    creation            = true
+    update              = true
+    deletion            = true
+  }
 }
 
 resource "github_branch_protection" "repo" {
@@ -192,9 +217,37 @@ resource "github_branch_protection" "repo" {
   }
 }
 
-resource "github_repository_tag_protection" "repo" {
+resource "github_repository_ruleset" "repo" {
   for_each = var.repos
 
   repository = github_repository.repo[each.key].name
-  pattern    = "v*"
+
+  name        = "version-tags"
+  target      = "tag"
+  enforcement = "active"
+
+  bypass_actors {
+    actor_id    = 1
+    actor_type  = "OrganizationAdmin"
+    bypass_mode = "always"
+  }
+
+  bypass_actors {
+    actor_id    = 5
+    actor_type  = "RepositoryRole"
+    bypass_mode = "always"
+  }
+
+  conditions {
+    ref_name {
+      include = ["refs/tags/v*"]
+      exclude = []
+    }
+  }
+
+  rules {
+    creation            = true
+    update              = true
+    deletion            = true
+  }
 }
