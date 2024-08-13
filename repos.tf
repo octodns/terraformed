@@ -32,9 +32,6 @@ variable "repos" {
     "octodns-transip" = "Transip DNS provider for octoDNS",
     "octodns-ultra" = "Ultra DNS provider for octoDNS",
 
-    # archived
-    "octodns-dyn" = "[DEPRECATED] Oracle Dyn provider for octoDNS",
-
     # other
     ".github" = "Org-level configuration & defaults",
     "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
