@@ -146,8 +146,6 @@ resource "github_branch_protection" "octodns" {
   require_signed_commits          = false
   required_linear_history         = false
 
-  push_restrictions               = []
-
   required_pull_request_reviews {
     dismiss_stale_reviews           = false
     dismissal_restrictions          = []
@@ -179,8 +177,6 @@ resource "github_branch_protection" "repo" {
   require_conversation_resolution = false
   require_signed_commits          = false
   required_linear_history         = false
-
-  push_restrictions               = []
 
   required_pull_request_reviews {
     dismiss_stale_reviews           = false
