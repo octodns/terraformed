@@ -3,7 +3,7 @@ data "http" "ci_config" {
 }
 
 locals {
-  ci_config = jsondecode(data.http.ci_config.body)
+  ci_config = jsondecode(data.http.ci_config.response_body)
   python_versions_active = local.ci_config.python_versions_active
   python_version_current = local.ci_config.python_version_current
 }
