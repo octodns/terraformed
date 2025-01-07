@@ -39,3 +39,30 @@ resource "github_team_repository" "review" {
   repository = each.key
   permission = "maintain"
 }
+
+# AutoDNS
+
+resource "github_team" "autodns" {
+  name        = "autodns"
+  description = "Team to group people who manage octodns-autodns"
+  privacy     = "closed"
+}
+
+resource "github_team_membership" "autodns" {
+  for_each = toset([
+    "avalor1",
+    "neubi4",
+    "xFuture603",
+    "z-bsod"
+  ])
+
+  team_id  = github_team.autodns.id
+  username = each.key
+  role     = "member"
+}
+
+resource "github_team_repository" "autodns" {
+  team_id    = github_team.autodns.id
+  repository = github_repository.repo["octodns-autodns"].id
+  permission = "maintain"
+}

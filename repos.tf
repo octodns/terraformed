@@ -2,6 +2,7 @@ variable "repos" {
   type = map(string)
   default = {
     # providers
+    "octodns-autodns" = "octodns Provider for AutoDNS by InternetX",
     "octodns-azure" = "Azure DNS provider for octoDNS",
     "octodns-bind" = "RFC compliant (Bind9) provider for octoDNS",
     "octodns-cloudflare" = "Cloudflare DNS provider for octoDNS",
@@ -42,6 +43,7 @@ variable "repos" {
 variable "repos_providers" {
   type = set(string)
   default = [
+    "octodns-autodns",
     "octodns-azure",
     "octodns-bind",
     "octodns-cloudflare",
