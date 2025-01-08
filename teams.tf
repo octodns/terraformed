@@ -50,9 +50,9 @@ resource "github_team" "autodns" {
 
 resource "github_team_membership" "autodns" {
   for_each = toset([
-    "schurzi",
-    "neubi4",
     "beechesII",
+    "neubi4",
+    "schurzi",
     "z-bsod"
   ])
 
