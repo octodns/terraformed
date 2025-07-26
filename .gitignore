@@ -2,4 +2,4 @@
 .terraform/
 env/
 terraform.tfstate*
-tf.plan
+tofu.plan
