@@ -37,6 +37,7 @@ variable "repos" {
     ".github" = "Org-level configuration & defaults",
     "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
     "terraformed" = "Terraform based management of the octoDNS GitHub Org",
+    "changelet" = "Simple standalone Python module for CHANGELOG and release management",
   }
 }
 
