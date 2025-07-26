@@ -5,5 +5,4 @@ set -e
 cd "$(dirname "$0")"/..
 ROOT=$(pwd)
 
-./script/build
-./script/init
+docker build -t terraformed .
