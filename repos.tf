@@ -155,7 +155,7 @@ resource "github_branch_protection" "octodns" {
   }
 
   required_status_checks {
-    contexts = concat("${null_resource.required_contexts.*.triggers.job}", ["setup-py"])
+    contexts = concat("${null_resource.required_contexts.*.triggers.job}", ["setup-py", "changelog"])
     strict   = true
   }
 }
@@ -215,7 +215,7 @@ resource "github_branch_protection" "repo" {
   }
 
   required_status_checks {
-    contexts = contains(var.repos_providers, each.key) ? concat("${null_resource.required_contexts.*.triggers.job}", ["setup-py"]) : []
+    contexts = contains(var.repos_providers, each.key) ? concat("${null_resource.required_contexts.*.triggers.job}", ["setup-py", "changelog"]) : []
     strict   = true
   }
 }

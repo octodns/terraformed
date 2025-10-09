@@ -5,4 +5,4 @@ set -e
 cd "$(dirname "$0")"/..
 ROOT=$(pwd)
 
-docker run --rm --env-file=.env -v $ROOT:/terraformed -u $(id -u):$(id -g) terraformed "$@"
+docker run --rm --env-file=.env -v $ROOT:/terraformed:z -u $(id -u):$(id -g) terraformed "$@"
