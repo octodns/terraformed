@@ -38,6 +38,7 @@ variable "repos" {
     "octodns-docker" = "OctoDNS – DNS as code – bundled as Docker images",
     "terraformed" = "Terraform based management of the octoDNS GitHub Org",
     "changelet" = "Simple standalone Python module for CHANGELOG and release management",
+    "proviso" = "Simple standalone Python module for CHANGELOG and release management",
   }
 }
 
@@ -90,6 +91,8 @@ variable "repos_other" {
     ".github",
     "octodns-docker",
     "terraformed",
+    "changelet",
+    "proviso",
   ]
 }
 
