@@ -33,6 +33,7 @@ variable "repos" {
     "octodns-template" = "Skeletal new module template and helper script",
     "octodns-transip" = "Transip DNS provider for octoDNS",
     "octodns-ultra" = "Ultra DNS provider for octoDNS",
+    "octodns-vultr" = "Vultr DNS provider for octoDNS",
 
     # other
     ".github" = "Org-level configuration & defaults",
@@ -77,6 +78,7 @@ variable "repos_providers" {
     "octodns-template",
     "octodns-transip",
     "octodns-ultra",
+    "octodns-vultr",
   ]
 }
 
