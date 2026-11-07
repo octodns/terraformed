@@ -66,3 +66,31 @@ resource "github_team_repository" "autodns" {
   repository = github_repository.repo["octodns-autodns"].id
   permission = "maintain"
 }
+
+# Automation
+
+resource "github_team" "automation" {
+  name        = "automation"
+  description = "Automation accounts that review PRs"
+  privacy     = "closed"
+}
+
+resource "github_team_membership" "automation" {
+  team_id  = github_team.automation.id
+  username = github_membership.automation.username
+  role     = "member"
+}
+
+resource "github_team_repository" "automation-octodns" {
+  team_id    = github_team.automation.id
+  repository = "octodns"
+  permission = "push"
+}
+
+resource "github_team_repository" "automation" {
+  for_each   = var.repos
+
+  team_id    = github_team.automation.id
+  repository = each.key
+  permission = "push"
+}

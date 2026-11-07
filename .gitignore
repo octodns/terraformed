@@ -1,5 +1,7 @@
 .terraform.lock.hcl
 .terraform/
+.terraform.d/
+.terraform.tfstate.lock.info
 env/
-terraform.tfstate*
+terraform.tfstate.backup
 tofu.plan

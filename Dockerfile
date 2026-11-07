@@ -1,4 +1,4 @@
-FROM ghcr.io/opentofu/opentofu:1.10-minimal AS tofu
+FROM ghcr.io/opentofu/opentofu:1.13-minimal AS tofu
 FROM alpine:3
 
 # Copy the tofu binary from the minimal image

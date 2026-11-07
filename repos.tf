@@ -105,7 +105,6 @@ resource "github_repository" "octodns" {
   description = "Tools for managing DNS across multiple providers"
 
   delete_branch_on_merge = true
-  has_downloads          = false
   has_issues             = true
   has_projects           = false
   has_wiki               = false
@@ -126,7 +125,6 @@ resource "github_repository" "repo" {
   description = each.value
 
   delete_branch_on_merge = true
-  has_downloads          = false
   has_issues             = true
   has_projects           = false
   has_wiki               = false
@@ -175,7 +173,6 @@ resource "github_repository_ruleset" "octodns" {
   enforcement = "active"
 
   bypass_actors {
-    actor_id    = 1
     actor_type  = "OrganizationAdmin"
     bypass_mode = "always"
   }
@@ -237,7 +234,6 @@ resource "github_repository_ruleset" "repo" {
   enforcement = "active"
 
   bypass_actors {
-    actor_id    = 1
     actor_type  = "OrganizationAdmin"
     bypass_mode = "always"
   }
