@@ -22,3 +22,10 @@ resource "github_membership" "members" {
   username = each.key
   role     = "member"
 }
+
+# Automation
+
+resource "github_membership" "automation" {
+  username = "ross-automation"
+  role     = "member"
+}
