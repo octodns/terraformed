@@ -109,7 +109,6 @@ resource "github_repository" "octodns" {
   has_projects           = false
   has_wiki               = false
   visibility             = "public"
-  vulnerability_alerts   = true
 
   topics = [
     "dns",
@@ -129,7 +128,6 @@ resource "github_repository" "repo" {
   has_projects           = false
   has_wiki               = false
   visibility             = "public"
-  vulnerability_alerts   = !contains(var.repos_archived, each.key)
 
   archived               = contains(var.repos_archived, each.key)
 
@@ -137,6 +135,24 @@ resource "github_repository" "repo" {
     # don't want to bother with managing topics atm
     ignore_changes = [topics]
   }
+}
+
+locals {
+  # GitHub rejects vulnerability alert changes on archived repos.
+  repos_active = {
+    for name, description in var.repos : name => description
+    if !contains(var.repos_archived, name)
+  }
+}
+
+resource "github_repository_vulnerability_alerts" "octodns" {
+  repository = github_repository.octodns.name
+}
+
+resource "github_repository_vulnerability_alerts" "repo" {
+  for_each = local.repos_active
+
+  repository = github_repository.repo[each.key].name
 }
 
 # TODO: look at refactoring this into the std repo now that it's main
